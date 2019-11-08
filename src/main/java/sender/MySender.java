@@ -25,13 +25,22 @@ public class MySender {
 			Queue queue = (Queue) applicationContext.getBean("queue");
 			
 			// Create a connection. See https://docs.oracle.com/javaee/7/api/javax/jms/package-summary.html	
+			QueueConnection queueConnection = factory.createQueueConnection();
 			// Open a session without transaction and acknowledge automatic
+			QueueSession session = queueConnection.createQueueSession(false,Session.AUTO_ACKNOWLEDGE); 
 			// Start the connection
+			queueConnection.start();
 			// Create a sender
+			QueueSender sender = session.createSender(queue); 
 			// Create a message
+			TextMessage message =session.createTextMessage("Hello message broker\n\n\n\n\n\n\n\ndddddddddddddddddddddd");
 			// Send the message
+			sender.send(message);
 			// Close the session
+			session.close();
+			
 			// Close the connection
+			queueConnection.close();
 
 		}catch(Exception e){
 			e.printStackTrace();
