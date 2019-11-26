@@ -37,8 +37,8 @@ public class MyReceiver {
 			Message m = receiver.receive();
 			
 			System.out.println(m + "rrrrrrrrrr\n\n\n\n\n\n\n\n\n");
-			//session.close();
-			//queueConnection.close();
+			session.close();
+			queueConnection.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
